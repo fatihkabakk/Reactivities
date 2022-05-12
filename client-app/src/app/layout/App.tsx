@@ -36,6 +36,9 @@ function App() {
         setSelectedActivity(activity);
     }
 
+    const handleDeleteActivity = (id: string) => {
+        setActivities(activities.filter(e => e.id !== id));
+    }
     useEffect(() => {
         axios.get<Activity[]>('http://localhost:5000/api/activities').then(response => {
             setActivities(response.data);
@@ -55,6 +58,7 @@ function App() {
                     openForm={handleFormOpen}
                     closeForm={handleFormClose}
                     createOrEdit={handleCreateOrEditActivity}
+                    deleteActivity={handleDeleteActivity}
                 />
             </Container>
         </>
